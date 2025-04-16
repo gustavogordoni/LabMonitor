@@ -15,6 +15,7 @@ class Dashboard extends Component
     public $availableComputers;
     public $totalWarnings;
     public $activeSessions;
+    public $completedToday;
 
     public function mount()
     {
@@ -27,10 +28,28 @@ class Dashboard extends Component
             ->whereNull('end_time')
             ->latest('start_time')
             ->get();
+
+        $this->completedToday = Usage::with(['user', 'computer'])
+            ->whereDate('start_time', now()->format('Y-m-d'))
+            ->whereNotNull('end_time')
+            ->latest('end_time')
+            ->get();
     }
 
     public function render()
     {
         return view('livewire.admin.dashboard');
+    }
+
+    public function forceEndSession($usageId)
+    {
+        $usage = Usage::with('computer')->findOrFail($usageId);
+
+        if (is_null($usage->end_time)) {
+            $usage->update(['end_time' => now()]);
+            $usage->computer->update(['status' => 'available']);
+        }
+
+        $this->mount(); // Recarrega os dados
     }
 }
