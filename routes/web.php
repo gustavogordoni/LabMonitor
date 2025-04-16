@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\ComputerSelection;
 use App\Livewire\Admin\Dashboard;
+use App\Livewire\Admin\UserDetails;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Apenas logado no sistema
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -29,12 +31,14 @@ Route::middleware([
 });
 
 
+// Logado e é admin (falta implementar)
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-    // add minha delitmitação de admin
+    // add delitmitação de admin
 ])->group(function () {
     Route::get('/admin/dashboard', Dashboard::class)
         ->name('admin.dashboard');
+    Route::get('/admin/users/{userId}', UserDetails::class)->name('admin.user.details');
 });
