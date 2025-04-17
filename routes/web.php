@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Apenas logado no sistema
+// Aluno
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -33,14 +33,14 @@ Route::middleware([
 });
 
 
-// Logado e é admin (falta implementar)
+// Admin
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
     'admin',
 ])->group(function () {
-    Route::get('/admin/dashboard', Dashboard::class)
+    Route::get('/admin', Dashboard::class)
         ->name('admin.dashboard');
     Route::get('/admin/users/{userId}', UserDetails::class)->name('admin.user.details');
     Route::get('/admin/computers/{computerId}', ComputerDetails::class)->name('admin.computers.details');
