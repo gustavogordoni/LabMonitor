@@ -20,6 +20,7 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+    'user',
 ])->group(function () {
 
     Route::get('/dashboard', function () {
@@ -36,9 +37,22 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-    // add delitmitação de admin
+    'admin',
 ])->group(function () {
     Route::get('/admin/dashboard', Dashboard::class)
         ->name('admin.dashboard');
     Route::get('/admin/users/{userId}', UserDetails::class)->name('admin.user.details');
 });
+
+
+// Route::middleware(['admin'])->group(function () {
+//     // Somente admins
+// });
+
+// Route::middleware(['user'])->group(function () {
+//     // Somente usuários comuns
+// });
+
+// Route::middleware(['guestOrUser'])->group(function () {
+//     // Acesso público ou user logado
+// });
