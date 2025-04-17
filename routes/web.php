@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\User\ComputerSelection;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\UserDetails;
+use App\Livewire\Admin\ComputerDetails;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::middleware([
     Route::get('/admin/dashboard', Dashboard::class)
         ->name('admin.dashboard');
     Route::get('/admin/users/{userId}', UserDetails::class)->name('admin.user.details');
+    Route::get('/admin/computers/{computerId}', ComputerDetails::class)->name('admin.computers.details');
+
 });
 
 

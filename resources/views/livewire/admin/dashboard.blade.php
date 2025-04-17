@@ -46,7 +46,12 @@
                                 {{ $session->user->name }}
                             </a>
                         </td>
-                        <td class="px-4 py-2 text-gray-800 dark:text-white">{{ $session->computer->label }}</td>
+                        <td class="px-4 py-2 text-gray-800 dark:text-white">
+                            <a href="{{ route('admin.computers.details', ['computerId' => $session->computer_id]) }}"
+                                class="text-blue-500 hover:underline">
+                                {{ $session->computer->label }}
+                            </a>
+                        </td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">{{
                             \Carbon\Carbon::parse($session->start_time)->format('H:i d/m') }}</td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
@@ -86,10 +91,16 @@
                     @forelse($completedToday as $session)
                     <tr class="border-t border-gray-300 dark:border-gray-600">
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            {{ $session->user->name }}
+                            <a href="{{ route('admin.user.details', ['userId' => $session->user_id]) }}"
+                                class="text-blue-500 hover:underline">
+                                {{ $session->user->name }}
+                            </a>
                         </td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            {{ $session->computer->label }}
+                            <a href="{{ route('admin.computers.details', ['computerId' => $session->computer_id]) }}"
+                                class="text-blue-500 hover:underline">
+                                {{ $session->computer->label }}
+                            </a>
                         </td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
                             {{ \Carbon\Carbon::parse($session->start_time)->format('H:i') }}
