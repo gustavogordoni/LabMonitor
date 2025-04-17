@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
 // Aluno
 Route::middleware([
     'auth:sanctum',
@@ -24,9 +28,6 @@ Route::middleware([
     'student',
 ])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 
     Route::get('/user/select-computer', ComputerSelection::class)
         ->name('user.computer');
