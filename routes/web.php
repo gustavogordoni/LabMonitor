@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\ComputerSelection;
 use App\Livewire\Admin\Dashboard;
-use App\Livewire\Admin\UserDetails;
 use App\Livewire\Admin\ComputerDetails;
+use App\Livewire\Admin\StudentDetails;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,8 +42,8 @@ Route::middleware([
 ])->group(function () {
     Route::get('/admin', Dashboard::class)
         ->name('admin.dashboard');
-    Route::get('/admin/users/{userId}', UserDetails::class)->name('admin.user.details');
-    Route::get('/admin/computers/{computerId}', ComputerDetails::class)->name('admin.computers.details');
+    Route::get('/admin/stundent/{userId}', StudentDetails::class)->name('admin.student.details');
+    Route::get('/admin/computer/{computerId}', ComputerDetails::class)->name('admin.computer.details');
 
 });
 

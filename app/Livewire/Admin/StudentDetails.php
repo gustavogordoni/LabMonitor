@@ -5,7 +5,7 @@ namespace App\Livewire\Admin;
 use Livewire\Component;
 use App\Models\User;
 
-class UserDetails extends Component
+class StudentDetails extends Component
 {
     public User $user;
 
@@ -16,6 +16,6 @@ class UserDetails extends Component
     
     public function render()
     {        
-        return view('livewire.admin.user-details');
+        return view('livewire.admin.student-details');
     }
 }

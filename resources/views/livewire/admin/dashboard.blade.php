@@ -41,13 +41,13 @@
                     @forelse($activeSessions as $session)
                     <tr class="border-t border-gray-300 dark:border-gray-600">
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            <a href="{{ route('admin.user.details', ['userId' => $session->user_id]) }}"
+                            <a href="{{ route('admin.student.details', ['userId' => $session->user_id]) }}"
                                 class="text-blue-500 hover:underline">
                                 {{ $session->user->name }}
                             </a>
                         </td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            <a href="{{ route('admin.computers.details', ['computerId' => $session->computer_id]) }}"
+                            <a href="{{ route('admin.computer.details', ['computerId' => $session->computer_id]) }}"
                                 class="text-blue-500 hover:underline">
                                 {{ $session->computer->label }}
                             </a>
@@ -91,13 +91,13 @@
                     @forelse($completedToday as $session)
                     <tr class="border-t border-gray-300 dark:border-gray-600">
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            <a href="{{ route('admin.user.details', ['userId' => $session->user_id]) }}"
+                            <a href="{{ route('admin.student.details', ['userId' => $session->user_id]) }}"
                                 class="text-blue-500 hover:underline">
                                 {{ $session->user->name }}
                             </a>
                         </td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            <a href="{{ route('admin.computers.details', ['computerId' => $session->computer_id]) }}"
+                            <a href="{{ route('admin.computer.details', ['computerId' => $session->computer_id]) }}"
                                 class="text-blue-500 hover:underline">
                                 {{ $session->computer->label }}
                             </a>
