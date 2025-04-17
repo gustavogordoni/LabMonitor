@@ -37,7 +37,7 @@ class UserFactory extends Factory
             'profile_photo_path' => null,
             'current_team_id' => null,
 
-            'role' => fake()->randomElement(['user', 'admin']),
+            'role' => fake()->randomElement(['student', 'admin']),
         ];
     }
 

@@ -20,7 +20,7 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-    'user',
+    'student',
 ])->group(function () {
 
     Route::get('/dashboard', function () {
