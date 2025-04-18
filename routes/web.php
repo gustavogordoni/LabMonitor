@@ -7,6 +7,7 @@ use App\Livewire\Admin\ComputerDetails;
 use App\Livewire\Admin\StudentDetails;
 use App\Livewire\Admin\ComputerList;
 use App\Livewire\Admin\StudentList;
+use App\Livewire\User\History;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +30,11 @@ Route::middleware([
     'verified',
     'student',
 ])->group(function () {
-
-
     Route::get('/user/select-computer', ComputerSelection::class)
         ->name('user.computer');
+    Route::get('/user/history', History::class)
+        ->name('user.history');
+    
 });
 
 

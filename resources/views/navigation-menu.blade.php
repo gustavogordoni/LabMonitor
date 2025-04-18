@@ -27,6 +27,9 @@
                     <x-nav-link href="{{ route('user.computer') }}" :active="request()->routeIs('user.computer')">
                         {{ __('Computadores') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('user.history') }}" :active="request()->routeIs('user.history')">
+                        {{ __('Histórico') }}
+                    </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -182,6 +185,9 @@
             @elseif (auth()->user()->role == 'student')
             <x-responsive-nav-link href="{{ route('user.computer') }}" :active="request()->routeIs('user.computer')">
                 {{ __('Computadores') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('user.history') }}" :active="request()->routeIs('user.history')">
+                {{ __('Histórico') }}
             </x-responsive-nav-link>
             @endif
         </div>

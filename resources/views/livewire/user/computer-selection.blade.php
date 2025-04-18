@@ -13,12 +13,10 @@
     @if($activeUsage)
     <div class="p-4 bg-blue-100 dark:bg-blue-800 rounded flex justify-between items-center">
         <div>
-            <p class="text-sm text-gray-600 dark:text-gray-300">
-                Iniciado em: {{ \Carbon\Carbon::parse($activeUsage->start_time)->format('d/m/y - H:i') }}
-            </p>
-
-            <p class="text-sm text-gray-600 dark:text-gray-300">
-                Finalizado em: {{ \Carbon\Carbon::parse($activeUsage->end_time)->format('d/m/y - H:i') }}
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Sessão atual</h3>
+            <p class="text-sm text-gray-700 dark:text-gray-200">
+                Ativa desde <strong>{{ \Carbon\Carbon::parse($activeUsage->start_time)->format('d/m/y - H:i') }}</strong> no
+                computador <strong><span class="font-bold">{{ $activeUsage->computer->label }}</span></strong>
             </p>
             
         </div>
