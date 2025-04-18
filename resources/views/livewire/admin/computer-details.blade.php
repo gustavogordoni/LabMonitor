@@ -47,9 +47,9 @@
                                 {{ $usage->user->name }}
                             </a></td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">{{
-                            \Carbon\Carbon::parse($usage->start_time)->format('H:i d/m') }}</td>
+                            \Carbon\Carbon::parse($usage->start_time)->format('d/m/y - H:i') }}</td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            {{ $usage->end_time ? \Carbon\Carbon::parse($usage->end_time)->format('H:i d/m') : 'Em uso'
+                            {{ $usage->end_time ? \Carbon\Carbon::parse($usage->end_time)->format('d/m/y - H:i') : 'Em uso'
                             }}
                         </td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">

@@ -17,6 +17,12 @@
                     <x-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Administradores') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('admin.students') }}" :active="request()->routeIs('admin.students')">
+                        {{ __('Alunos') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('admin.computers') }}" :active="request()->routeIs('admin.computers')">
+                        {{ __('Computadores') }}
+                    </x-nav-link>
                     @elseif (auth()->user()->role == 'student')
                     <x-nav-link href="{{ route('user.computer') }}" :active="request()->routeIs('user.computer')">
                         {{ __('Computadores') }}
@@ -164,6 +170,14 @@
             <x-responsive-nav-link href="{{ route('admin.dashboard') }}"
                 :active="request()->routeIs('admin.dashboard')">
                 {{ __('Administradores') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('admin.students') }}"
+                :active="request()->routeIs('admin.students')">
+                {{ __('Alunos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('admin.computers') }}"
+                :active="request()->routeIs('admin.computers')">
+                {{ __('Computadores') }}
             </x-responsive-nav-link>
             @elseif (auth()->user()->role == 'student')
             <x-responsive-nav-link href="{{ route('user.computer') }}" :active="request()->routeIs('user.computer')">

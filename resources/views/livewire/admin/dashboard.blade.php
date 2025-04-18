@@ -53,7 +53,7 @@
                             </a>
                         </td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">{{
-                            \Carbon\Carbon::parse($session->start_time)->format('H:i d/m') }}</td>
+                            \Carbon\Carbon::parse($session->start_time)->format('H:i') }}</td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
                             <button wire:click="forceEndSession({{ $session->id }})"
                                 class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-semibold">

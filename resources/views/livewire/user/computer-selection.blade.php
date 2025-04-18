@@ -9,11 +9,11 @@
     <div class="p-4 bg-blue-100 dark:bg-blue-800 rounded flex justify-between items-center">
         <div>
             <p class="text-sm text-gray-600 dark:text-gray-300">
-                Iniciado em: {{ \Carbon\Carbon::parse($activeUsage->start_time)->format('H:i d/m') }}
+                Iniciado em: {{ \Carbon\Carbon::parse($activeUsage->start_time)->format('d/m/y - H:i') }}
             </p>
 
             <p class="text-sm text-gray-600 dark:text-gray-300">
-                Finalizado em: {{ \Carbon\Carbon::parse($activeUsage->end_time)->format('H:i d/m') }}
+                Finalizado em: {{ \Carbon\Carbon::parse($activeUsage->end_time)->format('d/m/y - H:i') }}
             </p>
             
         </div>
