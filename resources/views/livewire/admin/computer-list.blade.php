@@ -1,8 +1,26 @@
-<div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow space-y-6">
-    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Lista de Computadores</h2>
+<x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        {{ __('Lista de Computadores') }}
+    </h2>
+</x-slot>
 
-    <input type="text" wire:model.debounce.500ms="search" placeholder="Pesquisar por etiqueta"
-        class="w-full md:w-1/3 px-4 py-2 rounded border dark:bg-gray-800 dark:text-white" />
+<div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow space-y-6">
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 items-center">
+        <div class="md:col-span-2">
+            <input type="text" wire:model.live="search" placeholder="Pesquisar"
+                class="w-full px-4 py-2 rounded border dark:bg-gray-800 dark:text-white" />
+        </div>
+    
+        <div>
+            <select wire:model="searchColumn"
+                class="w-full px-3 py-2 border rounded dark:bg-gray-800 dark:text-white">
+                <option value="all">Pesquisar em todas</option>
+                <option value="label">Etiqueta</option>
+                <option value="status">Status</option>
+            </select>
+        </div>
+    </div>    
 
     <div class="mt-4 overflow-auto rounded shadow">
         <table class="min-w-full text-left text-sm">

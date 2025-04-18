@@ -1,5 +1,10 @@
+<x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        {{ __('Seleção de Computador') }}
+    </h2>
+</x-slot>
+
 <div class="p-6 bg-white dark:bg-gray-900 rounded-lg space-y-6">
-    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Seleção de Computador</h2>
 
     @if(session()->has('error'))
     <div class="text-red-600 dark:text-red-400">{{ session('error') }}</div>
