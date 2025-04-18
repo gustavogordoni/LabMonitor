@@ -14,6 +14,6 @@ class WarningSeeder extends Seeder
      */
     public function run(): void
     {
-        Warning::factory(10)->create();
+        Warning::factory(50)->create();
     }
 }

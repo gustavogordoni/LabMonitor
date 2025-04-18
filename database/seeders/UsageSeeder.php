@@ -13,6 +13,6 @@ class UsageSeeder extends Seeder
      */
     public function run(): void
     {
-        Usage::factory(10)->create();
+        Usage::factory(50)->create();
     }
 }

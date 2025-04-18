@@ -18,7 +18,7 @@ class WarningFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::inRandomOrder()->first()->id,
             'reason' => fake()->sentence(8),
             'issued_at' => fake()->dateTimeBetween('-1 month', 'now'),
         ];
