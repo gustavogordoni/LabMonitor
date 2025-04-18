@@ -39,13 +39,21 @@
                 <tbody>
                     @foreach($user->usages as $usage)
                     <tr class="border-t border-gray-300 dark:border-gray-600">
-                        <td class="px-4 py-2 text-gray-800 dark:text-white">{{ $usage->computer->label }}</td>
-                        <td class="px-4 py-2 text-gray-800 dark:text-white">{{ \Carbon\Carbon::parse($usage->start_time)->format('H:i d/m') }}</td>
+                        <td class="px-4 py-2 text-gray-800 dark:text-white"> <a
+                                href="{{ route('admin.computer.details', ['computerId' => $usage->computer_id]) }}"
+                                class="text-blue-500 hover:underline">
+                                {{ $usage->computer->label }}
+                            </a>
+                        </td>
+                        <td class="px-4 py-2 text-gray-800 dark:text-white">{{
+                            \Carbon\Carbon::parse($usage->start_time)->format('H:i d/m') }}</td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            {{ $usage->end_time ? \Carbon\Carbon::parse($usage->end_time)->format('H:i d/m') : 'Em uso' }}
+                            {{ $usage->end_time ? \Carbon\Carbon::parse($usage->end_time)->format('H:i d/m') : 'Em uso'
+                            }}
                         </td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            {{ $usage->end_time ? \Carbon\Carbon::parse($usage->start_time)->diffForHumans($usage->end_time, true) : '-' }}
+                            {{ $usage->end_time ?
+                            \Carbon\Carbon::parse($usage->start_time)->diffForHumans($usage->end_time, true) : '-' }}
                         </td>
                     </tr>
                     @endforeach
@@ -59,7 +67,8 @@
 
         <div class="bg-white dark:bg-gray-800 rounded shadow">
             @forelse($user->warnings as $warn)
-            <div class="px-4 py-2 border-b border-gray-300 dark:border-gray-600 text-sm text-gray-700 dark:text-gray-300">
+            <div
+                class="px-4 py-2 border-b border-gray-300 dark:border-gray-600 text-sm text-gray-700 dark:text-gray-300">
                 <strong>{{ $warn->reason }}</strong> – <em>{{ $warn->issued_at->format('d/m H:i') }}</em>
             </div>
             @empty

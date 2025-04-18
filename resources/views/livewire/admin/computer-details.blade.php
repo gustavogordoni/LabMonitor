@@ -15,11 +15,12 @@
         <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow col-span-2">
             <h3 class="text-sm text-gray-700 dark:text-gray-300">Sessões Ativas</h3>
             @forelse($activeSessions as $session)
-                <p class="text-gray-900 dark:text-white">
-                    {{ $session->user->name }} (iniciado às {{ \Carbon\Carbon::parse($session->start_time)->format('H:i') }})
-                </p>
+            <p class="text-gray-900 dark:text-white">
+                {{ $session->user->name }} (iniciado às {{ \Carbon\Carbon::parse($session->start_time)->format('H:i')
+                }})
+            </p>
             @empty
-                <p class="text-gray-500 dark:text-gray-400">Nenhuma sessão ativa.</p>
+            <p class="text-gray-500 dark:text-gray-400">Nenhuma sessão ativa.</p>
             @endforelse
         </div>
     </div>
@@ -40,13 +41,20 @@
                 <tbody>
                     @foreach($computer->usages as $usage)
                     <tr class="border-t border-gray-300 dark:border-gray-600">
-                        <td class="px-4 py-2 text-gray-800 dark:text-white">{{ $usage->user->name }}</td>
-                        <td class="px-4 py-2 text-gray-800 dark:text-white">{{ \Carbon\Carbon::parse($usage->start_time)->format('H:i d/m') }}</td>
+                        <td class="px-4 py-2 text-gray-800 dark:text-white"><a
+                                href="{{ route('admin.student.details', ['userId' => $usage->user_id]) }}"
+                                class="text-blue-500 hover:underline">
+                                {{ $usage->user->name }}
+                            </a></td>
+                        <td class="px-4 py-2 text-gray-800 dark:text-white">{{
+                            \Carbon\Carbon::parse($usage->start_time)->format('H:i d/m') }}</td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            {{ $usage->end_time ? \Carbon\Carbon::parse($usage->end_time)->format('H:i d/m') : 'Em uso' }}
+                            {{ $usage->end_time ? \Carbon\Carbon::parse($usage->end_time)->format('H:i d/m') : 'Em uso'
+                            }}
                         </td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            {{ $usage->end_time ? \Carbon\Carbon::parse($usage->start_time)->diffForHumans($usage->end_time, true) : '-' }}
+                            {{ $usage->end_time ?
+                            \Carbon\Carbon::parse($usage->start_time)->diffForHumans($usage->end_time, true) : '-' }}
                         </td>
                     </tr>
                     @endforeach
