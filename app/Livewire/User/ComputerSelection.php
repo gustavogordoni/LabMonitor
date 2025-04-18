@@ -22,14 +22,14 @@ class ComputerSelection extends Component
     public function select($id)
     {
         if ($this->activeUsage) {
-            session()->flash('error', 'You already have an active session.');
+            session()->flash('error', 'Você já tem uma sessão ativa.');
             return;
         }
 
         $computer = Computer::findOrFail($id);
 
         if ($computer->status !== 'available') {
-            session()->flash('error', 'This computer is not available.');
+            session()->flash('error', 'Este computador não está disponível.');
             return;
         }
 
