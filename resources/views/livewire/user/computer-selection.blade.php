@@ -15,10 +15,11 @@
         <div>
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Sessão atual</h3>
             <p class="text-sm text-gray-700 dark:text-gray-200">
-                Ativa desde <strong>{{ \Carbon\Carbon::parse($activeUsage->start_time)->format('d/m/y - H:i') }}</strong> no
+                Ativa desde <strong>{{ \Carbon\Carbon::parse($activeUsage->start_time)->format('d/m/y - H:i')
+                    }}</strong> no
                 computador <strong><span class="font-bold">{{ $activeUsage->computer->label }}</span></strong>
             </p>
-            
+
         </div>
         <button wire:click="cancel" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded font-semibold">
             Cancelar utilização
@@ -33,7 +34,20 @@
                 {{ $computer->status === 'available' ? 'bg-green-100 dark:bg-green-800' : 'bg-gray-200 dark:bg-gray-700' }}">
             <p class="font-bold text-lg text-gray-800 dark:text-white">{{ $computer->label }}</p>
             <p class="text-sm text-gray-600 dark:text-gray-300 mb-2 capitalize">
-                Status: {{ str_replace('_', ' ', $computer->status) }}
+                Status:
+                @switch($computer->status)
+                    @case('available')
+                        Disponível
+                        @break
+                    @case('in_use')
+                        Em uso
+                        @break
+                    @case('inactive')
+                        Indisponível
+                        @break
+                    @default                        
+                        Indeterminado
+                @endswitch
             </p>
 
             @if($computer->status === 'available' && !$activeUsage)

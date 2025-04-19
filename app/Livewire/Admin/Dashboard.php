@@ -50,6 +50,6 @@ class Dashboard extends Component
             $usage->computer->update(['status' => 'available']);
         }
 
-        $this->mount(); // Recarrega os dados
+        $this->mount();
     }
 }

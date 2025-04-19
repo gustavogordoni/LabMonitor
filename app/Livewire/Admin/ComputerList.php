@@ -40,4 +40,31 @@ class ComputerList extends Component
 
         return view('livewire.admin.computer-list', compact('computers'));
     }
+
+    public function inactivateComputer($idComputer)
+    {
+        $computer = Computer::findOrFail($idComputer);
+
+        $activeUsage = $computer->usages()
+            ->whereNull('end_time')
+            ->latest('start_time')
+            ->first();
+
+        if ($activeUsage) {
+            $activeUsage->update(['end_time' => now()]);
+        }
+
+        $computer->update(['status' => 'inactive']);
+
+        $this->resetPage();
+    }
+
+    public function availableComputer($idComputer)
+    {
+        $computer = Computer::findOrFail($idComputer);       
+
+        $computer->update(['status' => 'available']);
+
+        $this->resetPage();
+    }
 }

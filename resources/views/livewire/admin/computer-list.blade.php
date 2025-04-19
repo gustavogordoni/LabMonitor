@@ -5,22 +5,21 @@
 </x-slot>
 
 <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow space-y-6">
-    
+
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 items-center">
         <div class="md:col-span-2">
             <input type="text" wire:model.live="search" placeholder="Pesquisar"
                 class="w-full px-4 py-2 rounded border dark:bg-gray-800 dark:text-white" />
         </div>
-    
+
         <div>
-            <select wire:model="searchColumn"
-                class="w-full px-3 py-2 border rounded dark:bg-gray-800 dark:text-white">
+            <select wire:model="searchColumn" class="w-full px-3 py-2 border rounded dark:bg-gray-800 dark:text-white">
                 <option value="all">Pesquisar em todas</option>
                 <option value="label">Etiqueta</option>
                 <option value="status">Status</option>
             </select>
         </div>
-    </div>    
+    </div>
 
     <div class="mt-4 overflow-auto rounded shadow">
         <table class="min-w-full text-left text-sm">
@@ -35,10 +34,31 @@
                 @forelse($computers as $computer)
                 <tr class="border-t border-gray-300 dark:border-gray-600">
                     <td class="px-4 py-2 text-gray-900 dark:text-white">{{ $computer->label }}</td>
-                    <td class="px-4 py-2 text-gray-900 dark:text-white">{{ ucfirst($computer->status) }}</td>
+                    <td class="px-4 py-2 text-gray-900 dark:text-white">
+                        @switch($computer->status)
+                        @case('available')
+                        <span class="text-green-600 dark:text-green-400 font-bold">Disponível</span>
+                        @break
+                        @case('in_use')
+                        <span class="text-blue-600 dark:text-blue-400 font-bold">Em uso</span>
+                        @break
+                        @case('inactive')
+                        <span class="text-red-600 dark:text-red-400 font-bold">Indisponível</span>
+                        @break
+                        @default
+                        Indeterminado
+                        @endswitch
+                    </td>
                     <td class="px-4 py-2">
                         <a href="{{ route('admin.computer.details', ['computerId' => $computer->id]) }}"
-                            class="text-blue-500 hover:underline">Ver detalhes</a>
+                            class="text-blue-500 hover:underline border">Ver detalhes</a>
+                        @if($computer->status === 'available' || $computer->status === 'in_use')
+                        <a href="#" wire:click="inactivateComputer({{ $computer->id }})"
+                            class="text-red-500 hover:underline border mx-5">Inativar</a>
+                        @else
+                        <a href="#" wire:click="availableComputer({{ $computer->id }})"
+                            class="text-green-500 hover:underline border mx-5">Ativar</a>
+                        @endif
                     </td>
                 </tr>
                 @empty
