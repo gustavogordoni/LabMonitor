@@ -40,7 +40,7 @@ class ComputerSelection extends Component
         ]);
 
         $computer->update(['status' => 'in_use']);
-        $this->mount(); // Refresh data
+        $this->mount();
     }
 
     public function cancel()
@@ -49,6 +49,6 @@ class ComputerSelection extends Component
 
         $this->activeUsage->update(['end_time' => now()]);
         $this->activeUsage->computer->update(['status' => 'available']);
-        $this->mount(); // Refresh data
+        $this->mount();
     }
 }
