@@ -14,8 +14,8 @@
         </div>
 
         <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow">
-            <h3 class="text-sm text-gray-700 dark:text-gray-300">Função</h3>
-            <p class="text-lg font-semibold text-gray-900 dark:text-white">{{ $user->role }}</p>
+            <h3 class="text-sm text-gray-700 dark:text-gray-300">Prontuário</h3>
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">{{ $user->enrollment }}</p>
         </div>
 
         <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow">
@@ -43,7 +43,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($user->usages as $usage)
+                    @forelse($user->usages as $usage)
                     <tr class="border-t border-gray-300 dark:border-gray-600">
                         <td class="px-4 py-2 text-gray-800 dark:text-white"> <a
                                 href="{{ route('admin.computer.details', ['computerId' => $usage->computer_id]) }}"
@@ -62,7 +62,11 @@
                             \Carbon\Carbon::parse($usage->start_time)->diffForHumans($usage->end_time, true) : '-' }}
                         </td>
                     </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="4" class="px-4 py-4 text-center text-gray-500 dark:text-gray-400">Não possui histórico de sessões.</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
