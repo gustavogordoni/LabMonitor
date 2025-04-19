@@ -130,4 +130,11 @@
         </div>
     </div>
 
+    <div class="flex justify-end mb-4">
+        <a href="{{ route('admin.export.today-usage') }}"
+            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold text-sm transition">
+            Exportar usos do dia
+        </a>
+    </div>
+
 </div>

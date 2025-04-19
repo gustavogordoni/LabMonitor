@@ -51,6 +51,9 @@ Route::middleware([
     Route::get('/admin/computer/{computerId}', ComputerDetails::class)->name('admin.computer.details');
     Route::get('/admin/students', StudentList::class)->name('admin.students');
     Route::get('/admin/computers', ComputerList::class)->name('admin.computers');
+
+    Route::get('/admin/export-today-usage', [Dashboard::class, 'exportTodayUsageRaw'])
+        ->name('admin.export.today-usage');
 });
 
 

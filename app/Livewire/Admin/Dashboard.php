@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Usage;
 use App\Models\Computer;
 use App\Models\Warning;
+use App\Exports\TodayUsageExport;
 
 class Dashboard extends Component
 {
@@ -51,5 +52,10 @@ class Dashboard extends Component
         }
 
         $this->mount();
+    }
+
+    public function exportTodayUsageRaw()
+    {
+        return (new TodayUsageExport())->download();
     }
 }
