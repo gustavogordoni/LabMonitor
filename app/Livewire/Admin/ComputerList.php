@@ -11,14 +11,14 @@ class ComputerList extends Component
     use WithPagination;
 
     public $search = '';
-    public $searchColumn = 'all';
+    public $statusFilter = 'all';
 
     public function updatingSearch()
     {
         $this->resetPage();
     }
 
-    public function updatingSearchColumn()
+    public function updatingStatusFilter()
     {
         $this->resetPage();
     }
@@ -27,13 +27,20 @@ class ComputerList extends Component
     {
         $query = Computer::query();
 
-        if ($this->searchColumn === 'all') {
-            $query->where(function ($q) {
-                $q->where('label', 'like', "%{$this->search}%")
-                    ->orWhere('status', 'like', "%{$this->search}%");
-            });
-        } else {
-            $query->where($this->searchColumn, 'like', "%{$this->search}%");
+        if (!empty($this->search)) {
+            $query->where('label', 'like', "%{$this->search}%");
+        }
+
+        $statusMap = [
+            'disponível' => 'available',
+            'em uso' => 'in_use',
+            'indisponível' => 'inactive',
+        ];
+
+        $status = $statusMap[strtolower($this->statusFilter)] ?? $this->statusFilter;
+
+        if (in_array($status, ['available', 'in_use', 'inactive'])) {
+            $query->where('status', $status);
         }
 
         $computers = $query->orderBy('label')->paginate(10);
@@ -61,7 +68,7 @@ class ComputerList extends Component
 
     public function availableComputer($idComputer)
     {
-        $computer = Computer::findOrFail($idComputer);       
+        $computer = Computer::findOrFail($idComputer);
 
         $computer->update(['status' => 'available']);
 

@@ -13,7 +13,7 @@
         </div>
 
         <div>
-            <select wire:model="searchColumn" class="w-full px-3 py-2 border rounded dark:bg-gray-800 dark:text-white">
+            <select wire:model.live="searchColumn" class="w-full px-3 py-2 border rounded dark:bg-gray-800 dark:text-white">
                 <option value="all">Pesquisar em todas</option>
                 <option value="name">Nome</option>
                 <option value="email">Email</option>

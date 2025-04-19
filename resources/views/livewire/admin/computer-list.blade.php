@@ -13,10 +13,11 @@
         </div>
 
         <div>
-            <select wire:model="searchColumn" class="w-full px-3 py-2 border rounded dark:bg-gray-800 dark:text-white">
-                <option value="all">Pesquisar em todas</option>
-                <option value="label">Etiqueta</option>
-                <option value="status">Status</option>
+            <select wire:model.live="statusFilter" class="w-full px-3 py-2 border rounded dark:bg-gray-800 dark:text-white">
+                <option value="all">Todos os Status</option>
+                <option value="disponível">Disponível</option>
+                <option value="em uso">Em uso</option>
+                <option value="indisponível">Indisponível</option>
             </select>
         </div>
     </div>
