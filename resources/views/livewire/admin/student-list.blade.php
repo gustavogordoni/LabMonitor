@@ -24,7 +24,7 @@
 
     <div class="mt-4 overflow-auto rounded shadow">
         <table class="min-w-full text-left text-sm">
-            <thead class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+            <thead class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-center">
                 <tr>
                     <th class="px-4 py-2">Nome</th>
                     <th class="px-4 py-2">Email</th>
@@ -33,16 +33,18 @@
                     <th class="px-4 py-2">Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class=" text-center">
                 @forelse($students as $student)
                 <tr class="border-t border-gray-300 dark:border-gray-600">
                     <td class="px-4 py-2 text-gray-900 dark:text-white">{{ $student->name }}</td>
                     <td class="px-4 py-2 text-gray-900 dark:text-white">{{ $student->email }}</td>
                     <td class="px-4 py-2 text-gray-900 dark:text-white">{{ $student->usages->count() }}</td>
                     <td class="px-4 py-2 text-gray-900 dark:text-white">{{ $student->warnings->count() }}</td>
-                    <td class="px-4 py-2">
+                    <td class="px-4 py-2 flex justify-center gap-3">
                         <a href="{{ route('admin.student.details', ['userId' => $student->id]) }}"
-                            class="text-blue-500 hover:underline">Ver detalhes</a>
+                            class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700 rounded-md transition">
+                            🔍 Ver detalhes
+                        </a>
                     </td>
                 </tr>
                 @empty

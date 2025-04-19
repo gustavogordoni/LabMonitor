@@ -1,16 +1,30 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('Detalhes do Computador: ') .  $computer->label}}
+        {{ __('Detalhes do Computador: ') . $computer->label}}
     </h2>
 </x-slot>
 
 <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow space-y-6">
-    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Informações gerais</h3>    
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Informações gerais</h3>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow">
             <h3 class="text-sm text-gray-700 dark:text-gray-300">Status Atual</h3>
-            <p class="text-lg font-semibold text-gray-900 dark:text-white">{{ ucfirst($computer->status) }}</p>
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">
+                @switch($computer->status)
+                @case('available')
+                <span class="text-green-600 dark:text-green-400 font-bold">Disponível</span>
+                @break
+                @case('in_use')
+                <span class="text-blue-600 dark:text-blue-400 font-bold">Em uso</span>
+                @break
+                @case('inactive')
+                <span class="text-red-600 dark:text-red-400 font-bold">Indisponível</span>
+                @break
+                @default
+                Indeterminado
+                @endswitch
+            </p>
         </div>
 
         <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow">
@@ -55,7 +69,8 @@
                         <td class="px-4 py-2 text-gray-800 dark:text-white">{{
                             \Carbon\Carbon::parse($usage->start_time)->format('d/m/y - H:i') }}</td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            {{ $usage->end_time ? \Carbon\Carbon::parse($usage->end_time)->format('d/m/y - H:i') : 'Em uso'
+                            {{ $usage->end_time ? \Carbon\Carbon::parse($usage->end_time)->format('d/m/y - H:i') : 'Em
+                            uso'
                             }}
                         </td>
                         <td class="px-4 py-2 text-gray-800 dark:text-white">

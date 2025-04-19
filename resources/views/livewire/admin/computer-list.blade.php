@@ -23,14 +23,14 @@
 
     <div class="mt-4 overflow-auto rounded shadow">
         <table class="min-w-full text-left text-sm">
-            <thead class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+            <thead class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-center">
                 <tr>
                     <th class="px-4 py-2">Etiqueta</th>
                     <th class="px-4 py-2">Status</th>
                     <th class="px-4 py-2">Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 @forelse($computers as $computer)
                 <tr class="border-t border-gray-300 dark:border-gray-600">
                     <td class="px-4 py-2 text-gray-900 dark:text-white">{{ $computer->label }}</td>
@@ -49,17 +49,25 @@
                         Indeterminado
                         @endswitch
                     </td>
-                    <td class="px-4 py-2">
+                    <td class="px-4 py-2 flex justify-center gap-3">
                         <a href="{{ route('admin.computer.details', ['computerId' => $computer->id]) }}"
-                            class="text-blue-500 hover:underline border">Ver detalhes</a>
+                            class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700 rounded-md transition">
+                            🔍 Ver detalhes
+                        </a>
+
                         @if($computer->status === 'available' || $computer->status === 'in_use')
-                        <a href="#" wire:click="inactivateComputer({{ $computer->id }})"
-                            class="text-red-500 hover:underline border mx-5">Inativar</a>
+                        <a href="#" wire:click.prevent="inactivateComputer({{ $computer->id }})"
+                            class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700 rounded-md transition">
+                            ❌ Inativar
+                        </a>
                         @else
-                        <a href="#" wire:click="availableComputer({{ $computer->id }})"
-                            class="text-green-500 hover:underline border mx-5">Ativar</a>
+                        <a href="#" wire:click.prevent="availableComputer({{ $computer->id }})"
+                            class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-green-600 bg-green-50 hover:bg-green-100 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700 rounded-md transition">
+                            🔄 Ativar
+                        </a>
                         @endif
                     </td>
+
                 </tr>
                 @empty
                 <tr>
