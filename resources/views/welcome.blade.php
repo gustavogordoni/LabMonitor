@@ -75,24 +75,20 @@
                     </div>
                 </div>
                         
-                <div class="w-full lg:w-[438px] h-[180px] flex items-center justify-center rounded-t-lg lg:rounded-t-none lg:rounded-r-lg bg-white dark:bg-[#161615]">
+                <div class="flex-1 flex items-center justify-center rounded-t-lg lg:rounded-t-none lg:rounded-r-lg bg-white dark:bg-[#161615]">
                     <div class="flex items-center justify-center w-full">
                         <img 
                             src="{{ asset('images/logo_IF.png') }}" 
                             alt="Logo" 
                             class="w-16 h-16 me-5"
                         >
-                        <div class="px-3">
-                            <p></p>
-                        </div>
                         <h1 class="pl-4 text-2xl font-bold text-gray-800 dark:text-white whitespace-nowrap">
                             {{ config('app.name') }}
                         </h1>
-                        
                     </div>
-                </div>    
-                
+                </div>
             </main>
+            
         </div>
            
 
