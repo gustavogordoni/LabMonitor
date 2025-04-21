@@ -32,6 +32,9 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
+# Set alias 'pa' for 'php artisan'
+RUN echo "alias pa='php artisan'" >> /home/$user/.bashrc
+
 # Install redis
 RUN pecl install -o -f redis \
     &&  rm -rf /tmp/pear \
