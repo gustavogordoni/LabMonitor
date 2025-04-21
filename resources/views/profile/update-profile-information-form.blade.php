@@ -81,6 +81,14 @@
                 @endif
             @endif
         </div>
+
+        <!-- Enrollment -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="enrollment" value="{{ __('Prontuário') }}" />
+            <x-input id="enrollment" disabled id="enrollment" type="text" class="mt-1 block w-full"
+                wire:model="state.enrollment" required autocomplete="enrollment" />
+            <x-input-error for="enrollment" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">
