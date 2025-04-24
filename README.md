@@ -18,6 +18,9 @@ O **LabMonitor** é um sistema web desenvolvido para gerenciar o uso de computad
 
 ### Tabelas principais
 
+<div align="center"><img src="public/images/labMonitorDER.png" width="700" /></div>
+<!-- <div align="center"><img src="public/images/labMonitor.png" width="550" /></div> -->
+
 - **Users**: informações dos usuários, autenticação, função (aluno/admin), autenticação em dois fatores, entre outros.
 - **Computers**: identifica e define o status dos computadores cadastrados.
 - **Usages**: registros de utilização, incluindo usuário, computador, horário de início e fim.
