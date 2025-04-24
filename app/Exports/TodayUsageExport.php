@@ -21,7 +21,7 @@ class TodayUsageExport
         } else {
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
-            $sheet->fromArray(['Usuário','Prontuário', 'Curso', 'Computador', 'Início', 'Término', 'Duração', 'Data'], null, 'A1');
+            $sheet->fromArray(['Aluno','Prontuário', 'Curso', 'Computador', 'Início', 'Término', 'Duração', 'Data'], null, 'A1');
         }
 
         $sheet = $spreadsheet->getActiveSheet();
