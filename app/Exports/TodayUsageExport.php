@@ -21,7 +21,7 @@ class TodayUsageExport
         } else {
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
-            $sheet->fromArray(['Usuário','Prontuário', 'Computador', 'Início', 'Término', 'Duração', 'Data'], null, 'A1');
+            $sheet->fromArray(['Usuário','Prontuário', 'Curso', 'Computador', 'Início', 'Término', 'Duração', 'Data'], null, 'A1');
         }
 
         $sheet = $spreadsheet->getActiveSheet();
@@ -35,6 +35,7 @@ class TodayUsageExport
                 return [
                     $uso->user->name,
                     $uso->user->enrollment,
+                    $uso->user->course,
                     $uso->computer->label,
                     $uso->start_time->format('H:i'),
                     $uso->end_time->format('H:i'),
