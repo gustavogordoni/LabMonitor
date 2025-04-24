@@ -16,7 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->text('reason');
             $table->timestamp('issued_at');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

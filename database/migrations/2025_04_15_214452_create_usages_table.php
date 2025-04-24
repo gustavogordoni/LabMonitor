@@ -17,7 +17,9 @@ return new class extends Migration
             $table->foreignId('computer_id')->constrained('computers');
             $table->timestamp('start_time')->nullable();
             $table->timestamp('end_time')->nullable();
+            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

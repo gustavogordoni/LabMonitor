@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('label')->unique();
             $table->enum('status', ['available', 'in_use', 'inactive']);
+            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
