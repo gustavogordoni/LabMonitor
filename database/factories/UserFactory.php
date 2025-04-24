@@ -38,6 +38,16 @@ class UserFactory extends Factory
             'current_team_id' => null,
 
             'enrollment' => fake()->unique()->numerify('VP#######'),
+            'course' => fake()->randomElement([
+                'Informática',
+                'Mecatrônica',
+                'Edificações',
+                'Engenharia Civil',
+                'Engenharia Elétrica',
+                'Física',
+                'Sistemas de Informação',
+            ]),
+
             'role' => 'student',
         ];
     }
@@ -47,7 +57,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }
@@ -63,8 +73,8 @@ class UserFactory extends Factory
 
         return $this->has(
             Team::factory()
-                ->state(fn (array $attributes, User $user) => [
-                    'name' => $user->name.'\'s Team',
+                ->state(fn(array $attributes, User $user) => [
+                    'name' => $user->name . '\'s Team',
                     'user_id' => $user->id,
                     'personal_team' => true,
                 ])

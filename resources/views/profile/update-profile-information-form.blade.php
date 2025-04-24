@@ -89,6 +89,14 @@
                 wire:model="state.enrollment" required autocomplete="enrollment" />
             <x-input-error for="enrollment" class="mt-2" />
         </div>
+
+        <!-- Course -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="course" value="{{ __('Curso') }}" />
+            <x-input id="course" disabled id="course" type="text" class="mt-1 block w-full"
+                wire:model="state.course" required autocomplete="course" />
+            <x-input-error for="course" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">

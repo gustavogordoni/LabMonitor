@@ -23,6 +23,16 @@ return new class extends Migration
                     
             $table->string('enrollment')->unique();
             $table->string('role')->default('student');
+            $table->enum('course', [
+                'Informática',
+                'Mecatrônica',
+                'Edificações',
+                'Engenharia Civil',
+                'Engenharia Elétrica',
+                'Física',
+                'Sistemas de Informação'
+            ])->default('Informática');
+            
 
             $table->timestamps();
             $table->softDeletes();

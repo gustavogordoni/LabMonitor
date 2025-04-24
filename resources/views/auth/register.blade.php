@@ -21,7 +21,56 @@
 
             <div class="mt-4">
                 <x-label for="enrollment" value="{{ __('Prontuário') }}" />
-                <x-input id="enrollment" class="block mt-1 w-full" type="enrollment" name="enrollment" :value="old('enrollment')" required autocomplete="enrollment" />
+                <x-input id="enrollment" class="block mt-1 w-full uppercase" type="text" name="enrollment"
+                    :value="old('enrollment', 'VP')" required maxlength="9" autocomplete="off" />
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const input = document.getElementById('enrollment');
+
+                    if (input.value === '') {
+                        input.value = 'VP';
+                    }
+
+                    input.addEventListener('keydown', function(e) {
+                        const value = this.value;
+                        const isLetter = /^[a-zA-Z]$/.test(e.key);
+                        const isNumber = /^[0-9]$/.test(e.key);
+                        const isControlKey = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Tab', 'Delete'].includes(e
+                            .key);
+
+                        if (isControlKey) return;
+
+                        if (value.length < 2 && !isLetter) {
+                            e.preventDefault();
+                        } else if (value.length >= 2 && value.length < 9 && !isNumber) {
+                            e.preventDefault();
+                        } else if (value.length >= 9) {
+                            e.preventDefault();
+                        }
+                    });
+
+                    input.addEventListener('input', function() {
+                        this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 9);
+                    });
+                });
+            </script>
+
+
+            <div class="mt-4">
+                <x-label for="course" value="{{ __('Curso') }}" />
+                <x-select id="course" class="block mt-1 w-full py-2.5" name="course" required>
+                    <option value="">Selecione um curso</option>
+                    <option value="Informática" @selected(old('course') == 'Informática')>Informática</option>
+                    <option value="Mecatrônica" @selected(old('course') == 'Mecatrônica')>Mecatrônica</option>
+                    <option value="Edificações" @selected(old('course') == 'Edificações')>Edificações</option>
+                    <option value="Engenharia Civil" @selected(old('course') == 'Engenharia Civil')>Engenharia Civil</option>
+                    <option value="Engenharia Elétrica" @selected(old('course') == 'Engenharia Elétrica')>Engenharia Elétrica</option>
+                    <option value="Física" @selected(old('course') == 'Física')>Física</option>
+                    <option value="Sistemas de Informação" @selected(old('course') == 'Sistemas de Informação')>Sistemas de Informação</option>
+                </x-select>
+
             </div>
 
             <div class="mt-4">

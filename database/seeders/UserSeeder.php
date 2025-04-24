@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'enrollment' => 'VP9999999',
             'email' => 'admin@email.com',
             'password' => Hash::make('password'),
+            'course' => 'Sistemas de Informação',
             'role' => 'admin',
         ]);
 
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
             'enrollment' => 'VP8888888',
             'email' => 'test@email.com',
             'password' => Hash::make('password'),
+            'course' => 'Informática',
         ]);
 
         User::factory(50)->create();

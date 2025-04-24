@@ -3,10 +3,11 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Illuminate\Validation\Rule;
+use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -25,7 +26,16 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
 
-            'enrollment' => ['required', 'string', 'max:9', 'min:9', 'unique:users'],
+            'enrollment' => ['required', 'string', 'max:9', 'min:9', 'regex:/^VP\d{7}$/i', 'unique:users'],
+            'course' => ['required', Rule::in([
+                'Informática',
+                'Mecatrônica',
+                'Edificações',
+                'Engenharia Civil',
+                'Engenharia Elétrica',
+                'Física',
+                'Sistemas de Informação',
+            ])],
         ])->validate();
 
         return User::create([
@@ -34,6 +44,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
 
             'enrollment' => $input['enrollment'],
+            'course' => $input['course'],
         ]);
     }
 }
