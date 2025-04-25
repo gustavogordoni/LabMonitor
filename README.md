@@ -96,7 +96,7 @@ O **LabMonitor** é um sistema web desenvolvido para gerenciar o uso de computad
 
 ```sh
 git clone https://github.com/gustavogordoni/LabMonitor.git LabMonitor
-cd app-laravel
+cd LabMonitor
 ```
 
 ### Crie o arquivo `.env`
