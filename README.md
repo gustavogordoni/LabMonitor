@@ -41,6 +41,7 @@ O **LabMonitor** é um sistema web desenvolvido para gerenciar o uso de computad
 - **Jetstream**
 - **Livewire**
 - **PhpSpreadsheet**
+- **spatie/laravel-db-snapshots**  [(Anotações)](./snapshot.md)
 
 ### Frontend
 - **Blade**
