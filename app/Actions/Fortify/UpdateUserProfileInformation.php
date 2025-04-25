@@ -22,7 +22,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             
-            'enrollment' => ['required', 'string', 'max:9', 'min:9', 'regex:/^VP\d{7}$/i'],
+            'enrollment' => ['required', 'string', 'max:9', 'min:9', 'regex:/^VP\d{7}$/i', Rule::unique('users')->ignore($user->id)],
             'course' => ['required', Rule::in([
                 'Informática',
                 'Mecatrônica',
