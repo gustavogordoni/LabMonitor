@@ -3,7 +3,7 @@
 ### 1. Criar backup da tabela `users`
 
 ```bash
-php artisan **snapshot**:create users-backup --table=users
+php artisan snapshot:create users-backup --table=users
 ```
 
 ### Restaurar esse backup
