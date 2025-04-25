@@ -11,6 +11,7 @@ O **LabMonitor** é um sistema web desenvolvido para gerenciar o uso de computad
 - Geração de relatórios dos usos diários, em Excel;
 - Sistema de advertências para aluno;
 - Acesso via domínio usando Ngrok.
+- Criação e gerenciamento de backups de dados por administradores.
 
 ---
 
