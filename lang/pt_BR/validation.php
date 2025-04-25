@@ -235,7 +235,16 @@ return [
         'modality' => 'modalidade',
         'category' => 'categoria',
         'blood_type' => 'tipo sanguíneo',
-        'birth_date' => 'data de nascimento'
+        'birth_date' => 'data de nascimento',
+
+        'name' => 'nome',
+        'email' => 'e-mail',
+        'photo' => 'foto',
+        'course' => 'curso',
+        'password' => 'senha',
+        'terms' => 'termos',
+        'enrollment' => 'prontário',
+        'course' => 'curso',
     ],
 
 ];

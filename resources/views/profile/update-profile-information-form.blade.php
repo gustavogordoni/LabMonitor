@@ -10,12 +10,10 @@
     <x-slot name="form">
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
+            <div x-data="{ photoName: null, photoPreview: null }" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
-                <input type="file" id="photo" class="hidden"
-                            wire:model.live="photo"
-                            x-ref="photo"
-                            x-on:change="
+                <input type="file" id="photo" class="hidden" wire:model.live="photo" x-ref="photo"
+                    x-on:change="
                                     photoName = $refs.photo.files[0].name;
                                     const reader = new FileReader();
                                     reader.onload = (e) => {
@@ -28,13 +26,14 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full size-20 object-cover">
+                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}"
+                        class="rounded-full size-20 object-cover">
                 </div>
 
                 <!-- New Profile Photo Preview -->
                 <div class="mt-2" x-show="photoPreview" style="display: none;">
                     <span class="block rounded-full size-20 bg-cover bg-no-repeat bg-center"
-                          x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
+                        x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
                     </span>
                 </div>
 
@@ -55,21 +54,26 @@
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="name" value="{{ __('Name') }}" />
-            <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required autocomplete="name" />
+            <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required
+                autocomplete="name" />
             <x-input-error for="name" class="mt-2" />
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="email" value="{{ __('Email') }}" />
-            <x-input id="email" type="email" class="mt-1 block w-full" wire:model="state.email" required autocomplete="username" />
+            <x-input id="email" type="email" class="mt-1 block w-full" wire:model="state.email" required
+                autocomplete="username" />
             <x-input-error for="email" class="mt-2" />
 
-            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
+            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) &&
+                    !$this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2 dark:text-white">
                     {{ __('Your email address is unverified.') }}
 
-                    <button type="button" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" wire:click.prevent="sendEmailVerification">
+                    <button type="button"
+                        class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                        wire:click.prevent="sendEmailVerification">
                         {{ __('Click here to re-send the verification email.') }}
                     </button>
                 </p>
@@ -85,18 +89,61 @@
         <!-- Enrollment -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="enrollment" value="{{ __('Prontuário') }}" />
-            <x-input id="enrollment" disabled id="enrollment" type="text" class="mt-1 block w-full"
+            <x-input id="enrollment" id="enrollment" type="text" minlength="9" maxlength="9" class="mt-1 block w-full"
                 wire:model="state.enrollment" required autocomplete="enrollment" />
             <x-input-error for="enrollment" class="mt-2" />
         </div>
 
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const input = document.getElementById('enrollment');
+
+                if (input.value === '') {
+                    input.value = 'VP';
+                }
+
+                input.addEventListener('keydown', function(e) {
+                    const value = this.value;
+                    const isLetter = /^[a-zA-Z]$/.test(e.key);
+                    const isNumber = /^[0-9]$/.test(e.key);
+                    const isControlKey = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Tab', 'Delete'].includes(e
+                        .key);
+
+                    if (isControlKey) return;
+
+                    if (value.length < 2 && !isLetter) {
+                        e.preventDefault();
+                    } else if (value.length >= 2 && value.length < 9 && !isNumber) {
+                        e.preventDefault();
+                    } else if (value.length >= 9) {
+                        e.preventDefault();
+                    }
+                });
+
+                input.addEventListener('input', function() {
+                    this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 9);
+                });
+            });
+        </script>
+
         <!-- Course -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="course" value="{{ __('Curso') }}" />
-            <x-input id="course" disabled id="course" type="text" class="mt-1 block w-full"
-                wire:model="state.course" required autocomplete="course" />
+
+            <x-select id="course" class="mt-1 block w-full" wire:model="state.course" required autocomplete="course">
+                <option value="">Selecione um curso</option>
+                <option value="Informática">Informática</option>
+                <option value="Mecatrônica">Mecatrônica</option>
+                <option value="Edificações">Edificações</option>
+                <option value="Engenharia Civil">Engenharia Civil</option>
+                <option value="Engenharia Elétrica">Engenharia Elétrica</option>
+                <option value="Física">Física</option>
+                <option value="Sistemas de Informação">Sistemas de Informação</option>
+            </x-select>
+
             <x-input-error for="course" class="mt-2" />
         </div>
+
     </x-slot>
 
     <x-slot name="actions">

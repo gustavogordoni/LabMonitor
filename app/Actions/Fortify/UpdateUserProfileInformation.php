@@ -20,20 +20,37 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'photo' => ['nullable', 'mimes:jpg,jpeg,png, webp', 'max:2048'],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            
+            'enrollment' => ['required', 'string', 'max:9', 'min:9', 'regex:/^VP\d{7}$/i', 'unique:users'],
+            'course' => ['required', Rule::in([
+                'Informática',
+                'Mecatrônica',
+                'Edificações',
+                'Engenharia Civil',
+                'Engenharia Elétrica',
+                'Física',
+                'Sistemas de Informação',
+            ])],
         ])->validateWithBag('updateProfileInformation');
+
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
+        if (
+            $input['email'] !== $user->email &&
+            $user instanceof MustVerifyEmail
+        ) {
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                
+                'enrollment' => $input['enrollment'],
+                'course' => $input['course'],
             ])->save();
         }
     }
