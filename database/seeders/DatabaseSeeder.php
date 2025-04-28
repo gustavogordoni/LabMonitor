@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             ComputerSeeder::class,
-            UsageSeeder::class,
-            WarningSeeder::class,
+            // UsageSeeder::class,
+            // WarningSeeder::class,
         ]);
         
     }

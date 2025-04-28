@@ -15,22 +15,24 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Admin',
-            'enrollment' => 'VP9999999',
-            'email' => 'admin@email.com',
-            'password' => Hash::make('password'),
+            'name' => env('ADMIN_NAME'),
+            'enrollment' => env('ADMIN_ENROLLMENT'),
+            'email' => env('ADMIN_EMAIL'),
+            'password' => Hash::make(env('ADMIN_PASSWORD')),
             'course' => 'Sistemas de Informação',
             'role' => 'admin',
         ]);
 
-        User::create([
-            'name' => 'Test',
-            'enrollment' => 'VP8888888',
-            'email' => 'test@email.com',
-            'password' => Hash::make('password'),
-            'course' => 'Informática',
-        ]);
+        if (env('STUDENT_NAME') && env('STUDENT_ENROLLMENT') && env('STUDENT_EMAIL') && env('STUDENT_PASSWORD')) {
+            User::create([
+                'name' => env('STUDENT_NAME'),
+                'enrollment' => env('STUDENT_ENROLLMENT'),
+                'email' => env('STUDENT_EMAIL'),
+                'password' => Hash::make(env('STUDENT_PASSWORD')),
+                'course' => 'Informática',
+            ]);
+        }
 
-        User::factory(50)->create();
+        // User::factory(50)->create();
     }
 }
