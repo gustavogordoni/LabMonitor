@@ -6,6 +6,7 @@ use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\ComputerDetails;
 use App\Livewire\Admin\StudentDetails;
 use App\Livewire\Admin\ComputerList;
+use App\Livewire\Admin\Room;
 use App\Livewire\Admin\StudentList;
 use App\Livewire\User\History;
 
@@ -33,10 +34,8 @@ Route::middleware([
     Route::get('/user/select-computer', ComputerSelection::class)
         ->name('user.computer');
     Route::get('/user/history', History::class)
-        ->name('user.history');
-    
+        ->name('user.history');    
 });
-
 
 // Admin
 Route::middleware([
@@ -51,6 +50,7 @@ Route::middleware([
     Route::get('/admin/computer/{computerId}', ComputerDetails::class)->name('admin.computer.details');
     Route::get('/admin/students', StudentList::class)->name('admin.students');
     Route::get('/admin/computers', ComputerList::class)->name('admin.computers');
+    Route::get('/admin/rooms', Room::class)->name('admin.rooms');
 
     Route::get('/admin/export-today-usage', [Dashboard::class, 'exportTodayUsageRaw'])
         ->name('admin.export.today-usage');
