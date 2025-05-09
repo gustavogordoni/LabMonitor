@@ -15,7 +15,7 @@
 
                     @if (auth()->user()->role == 'admin')
                         <x-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
-                            {{ __('Administradores') }}
+                            {{ __('Painel') }}
                         </x-nav-link>
                         <x-nav-link href="{{ route('admin.students') }}" :active="request()->routeIs('admin.students')">
                             {{ __('Alunos') }}
@@ -174,7 +174,7 @@
             </x-responsive-nav-link> --}}
             @if (auth()->user()->role == 'admin')
                 <x-responsive-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
-                    {{ __('Administradores') }}
+                    {{ __('Painel') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link href="{{ route('admin.students') }}" :active="request()->routeIs('admin.students')">
                     {{ __('Alunos') }}
