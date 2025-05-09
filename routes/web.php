@@ -1,14 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Livewire\User\ComputerSelection;
-use App\Livewire\Admin\Dashboard;
-use App\Livewire\Admin\ComputerDetails;
-use App\Livewire\Admin\StudentDetails;
-use App\Livewire\Admin\ComputerList;
 use App\Livewire\Admin\Room;
-use App\Livewire\Admin\StudentList;
 use App\Livewire\User\History;
+use App\Livewire\Admin\Dashboard;
+use App\Livewire\Admin\StudentList;
+use App\Livewire\Admin\ComputerList;
+use Illuminate\Support\Facades\Route;
+use App\Livewire\Admin\StudentDetails;
+use App\Livewire\Admin\ComputerDetails;
+use App\Livewire\User\ComputerSelection;
+use App\Http\Controllers\RegisterStudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,9 @@ Route::middleware([
     Route::get('/admin/students', StudentList::class)->name('admin.students');
     Route::get('/admin/computers', ComputerList::class)->name('admin.computers');
     Route::get('/admin/rooms', Room::class)->name('admin.rooms');
+
+    Route::get('/admin/register-student', [RegisterStudentController::class, 'create'])->name('admin.register.student');
+    Route::post('/admin/register-student', [RegisterStudentController::class, 'store']);
 
     Route::get('/admin/export-today-usage', [Dashboard::class, 'exportTodayUsageRaw'])
         ->name('admin.export.today-usage');
