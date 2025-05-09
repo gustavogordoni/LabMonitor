@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('computers', function (Blueprint $table) {
             $table->id();
-            $table->string('label')->unique();
+            $table->string('label');
+            $table->string('code')->unique();
             $table->enum('status', ['available', 'in_use', 'inactive']);
             
             $table->timestamps();

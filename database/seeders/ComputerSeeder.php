@@ -13,43 +13,29 @@ class ComputerSeeder extends Seeder
      */
     public function run(): void
     {
-        // foreach (range('A', 'D') as $row) {
-        //     foreach (range(1, 5) as $num) {
-        //         Computer::create([
-        //             'label' => "{$row}0{$num}",
-        //             'status' => 'available',
-        //         ]);
-        //     }
-        // }
+        $path = database_path('data/computers.json');
 
-        $labels = [
-            'A01',
-            'A02',
-            'A03',
-            'A04',
-            'A05',
-            'B01',
-            'B02',
-            'B03',
-            'B04',
-            'B05',
-            'C01',
-            'C02',
-            'C03',
-            'C04',
-            'C05',
-            'D01',
-            'D02',
-            'D03',
-            'D04',
-            'D05',
-        ];
+        if (!file_exists($path)) {
+            $this->command->warn('Arquivo JSON de computadores (database/data/computers.json) não encontrado. Nenhum computador foi cadastrado.');
+            return;
+        }
 
-        foreach ($labels as $label){
-            Computer::create([
-                'label' => $label,
-                'status' => 'available',
-            ]);
+        $json = file_get_contents($path);
+        $computersByRoom = json_decode($json, true);
+
+        if (empty($computersByRoom)) {
+            $this->command->warn('Arquivo JSON de computadores está vazio. Nenhum computador foi cadastrado.');
+            return;
+        }
+
+        foreach ($computersByRoom as $computers) {
+            foreach ($computers as $computer) {
+                Computer::create([
+                    'label' => $computer['label'],
+                    'code' => $computer['code'],
+                    'status' => 'available',
+                ]);
+            }
         }
     }
 }

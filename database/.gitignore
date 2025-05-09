@@ -1,3 +1,4 @@
 *.sqlite*
 
 /snapshots
+/data/computers.json
