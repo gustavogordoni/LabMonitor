@@ -14,14 +14,16 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => env('ADMIN_NAME'),
-            'enrollment' => env('ADMIN_ENROLLMENT'),
-            'email' => env('ADMIN_EMAIL'),
-            'password' => Hash::make(env('ADMIN_PASSWORD')),
-            'course' => 'Sistemas de Informação',
-            'role' => 'admin',
-        ]);
+        if (env('ADMIN_NAME') && env('ADMIN_ENROLLMENT') && env('ADMIN_EMAIL') && env('ADMIN_PASSWORD')) {
+            User::create([
+                'name' => env('ADMIN_NAME'),
+                'enrollment' => env('ADMIN_ENROLLMENT'),
+                'email' => env('ADMIN_EMAIL'),
+                'password' => Hash::make(env('ADMIN_PASSWORD')),
+                'course' => 'Sistemas de Informação',
+                'role' => 'admin',
+            ]);
+        }
 
         if (env('STUDENT_NAME') && env('STUDENT_ENROLLMENT') && env('STUDENT_EMAIL') && env('STUDENT_PASSWORD')) {
             User::create([
