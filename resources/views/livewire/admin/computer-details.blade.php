@@ -7,7 +7,7 @@
 <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow space-y-6">
     <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Informações gerais</h3>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow">
             <h3 class="text-sm text-gray-700 dark:text-gray-300">Status Atual</h3>
             <p class="text-lg font-semibold text-gray-900 dark:text-white">
@@ -30,6 +30,11 @@
         <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow">
             <h3 class="text-sm text-gray-700 dark:text-gray-300">Usos Hoje</h3>
             <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $dailyUsageCount }}</p>
+        </div>
+
+        <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow">
+            <h3 class="text-sm text-gray-700 dark:text-gray-300">Sala</h3>
+            <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $computer->room }}</p>
         </div>
 
         <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow col-span-2">
@@ -59,26 +64,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($computer->usages as $usage)
-                    <tr class="border-t border-gray-300 dark:border-gray-600">
-                        <td class="px-4 py-2 text-gray-800 dark:text-white"><a
-                                href="{{ route('admin.student.details', ['userId' => $usage->user_id]) }}"
-                                class="text-blue-500 hover:underline">
-                                {{ $usage->user->name }}
-                            </a></td>
-                        <td class="px-4 py-2 text-gray-800 dark:text-white">{{
-                            \Carbon\Carbon::parse($usage->start_time)->format('d/m/y - H:i') }}</td>
-                        <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            {{ $usage->end_time ? \Carbon\Carbon::parse($usage->end_time)->format('d/m/y - H:i') : 'Em
-                            uso'
-                            }}
-                        </td>
-                        <td class="px-4 py-2 text-gray-800 dark:text-white">
-                            {{ $usage->end_time ?
-                            \Carbon\Carbon::parse($usage->start_time)->diffForHumans($usage->end_time, true) : '-' }}
-                        </td>
-                    </tr>
-                    @endforeach
+                    @forelse($computer->usages as $usage)
+                        <tr class="border-t border-gray-300 dark:border-gray-600">
+                            <td class="px-4 py-2 text-gray-800 dark:text-white"><a
+                                    href="{{ route('admin.student.details', ['userId' => $usage->user_id]) }}"
+                                    class="text-blue-500 hover:underline">
+                                    {{ $usage->user->name }}
+                                </a></td>
+                            <td class="px-4 py-2 text-gray-800 dark:text-white">
+                                {{ \Carbon\Carbon::parse($usage->start_time)->format('d/m/y - H:i') }}</td>
+                            <td class="px-4 py-2 text-gray-800 dark:text-white">
+                                {{ $usage->end_time
+                                    ? \Carbon\Carbon::parse($usage->end_time)->format('d/m/y - H:i')
+                                    : 'Em
+                                                            uso' }}
+                            </td>
+                            <td class="px-4 py-2 text-gray-800 dark:text-white">
+                                {{ $usage->end_time ? \Carbon\Carbon::parse($usage->start_time)->diffForHumans($usage->end_time, true) : '-' }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="px-4 py-4 text-center text-gray-500 dark:text-gray-400">
+                                Nenhum uso encontrado.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

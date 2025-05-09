@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('label');
             $table->string('code')->unique();
+            $table->string('room');
             $table->enum('status', ['available', 'in_use', 'inactive']);
             
             $table->timestamps();

@@ -28,11 +28,12 @@ class ComputerSeeder extends Seeder
             return;
         }
 
-        foreach ($computersByRoom as $computers) {
+        foreach ($computersByRoom as $room => $computers) {
             foreach ($computers as $computer) {
                 Computer::create([
                     'label' => $computer['label'],
                     'code' => $computer['code'],
+                    'room' => $room,
                     'status' => 'available',
                 ]);
             }
