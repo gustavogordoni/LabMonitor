@@ -21,7 +21,7 @@ class TodayUsageExport
         } else {
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
-            $sheet->fromArray(['Aluno','Prontuário', 'Curso', 'Computador', 'Início', 'Término', 'Duração', 'Data'], null, 'A1');
+            $sheet->fromArray(['Aluno','Prontuário', 'Curso', 'Data', 'Computador', 'Início', 'Término', 'Duração'], null, 'A1');
         }
 
         $sheet = $spreadsheet->getActiveSheet();
@@ -36,11 +36,11 @@ class TodayUsageExport
                     $uso->user->name,
                     $uso->user->enrollment,
                     $uso->user->course,
+                    $uso->start_time->format('d/m/Y'),
                     $uso->computer->label,
                     $uso->start_time->format('H:i'),
                     $uso->end_time->format('H:i'),
                     $uso->start_time->diffForHumans($uso->end_time, true),
-                    $uso->start_time->format('d/m/Y'),
                 ];
             })
             ->toArray();
