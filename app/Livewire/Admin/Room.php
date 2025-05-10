@@ -9,6 +9,14 @@ class Room extends Component
 {
     public $rooms = [];
 
+    public $selectedRoomName;
+    public $selectedComputers = [];
+    public $showRoomModal = false;
+
+    public $editingComputer;
+    public $editLabel = '';
+    public $editCode = '';
+
     public function mount()
     {
         $this->loadRooms();
@@ -45,6 +53,51 @@ class Room extends Component
             ->update(['status' => 'inactive']);
 
         $this->loadRooms();
+    }
+
+    public function showRoomComputers($room)
+    {
+        $this->selectedRoomName = $room;
+        $this->selectedComputers = Computer::where('room', $room)->get()->toArray();
+        $this->showRoomModal = true;
+    }
+
+    public function startEdit($id)
+    {
+        $this->editingComputer = Computer::findOrFail($id);
+        $this->editLabel = $this->editingComputer->label;
+        $this->editCode = $this->editingComputer->code;
+    }
+
+    public function saveEdit()
+    {
+        $this->validate([
+            'editLabel' => 'required|string|max:255',
+            'editCode' => 'required|string|max:255|unique:computers,code,' . $this->editingComputer->id,
+        ]);
+
+        $this->editingComputer->update([
+            'label' => $this->editLabel,
+            'code' => $this->editCode,
+        ]);
+
+        $this->showRoomComputers($this->selectedRoomName);
+        $this->editingComputer = null;
+        $this->reset(['editLabel', 'editCode']);
+    }
+
+    public function deleteComputer($id)
+    {
+        Computer::findOrFail($id)->delete();
+        $this->showRoomComputers($this->selectedRoomName);
+        $this->loadRooms();
+    }
+
+    public function cancelEdit()
+    {
+        $this->editingComputer = null;
+        $this->reset(['editLabel', 'editCode']);
+        $this->showRoomComputers($this->selectedRoomName);
     }
 
     public function render()

@@ -72,7 +72,7 @@
                         @endif
                         @if($computer->status === 'available')
                         <button wire:click="openUserModal({{ $computer->id }})"
-                            class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-green-600 bg-green-50 hover:bg-green-100 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700 rounded-md transition">
+                            class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-orange-600 bg-orange-50 hover:bg-orange-100 dark:bg-gray-800 dark:text-orange-400 dark:hover:bg-gray-700 rounded-md transition">
                             Associar Usuário
                         </button>
                         @endif
