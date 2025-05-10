@@ -13,7 +13,7 @@ class ComputerSelection extends Component
 
     public function mount()
     {
-        $this->computers = Computer::all();
+        $this->computers = Computer::where('status', '!=', 'inactive')->get();
         $this->activeUsage = Usage::where('user_id', auth()->user()->id)
             ->whereNull('end_time')
             ->first();
