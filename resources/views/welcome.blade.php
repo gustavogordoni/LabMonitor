@@ -78,11 +78,11 @@
                 </div>
                         
                 <div class="flex-1 flex items-center justify-center rounded-t-lg lg:rounded-t-none lg:rounded-r-lg bg-white dark:bg-[#161615]">
-                    <div class="flex items-center justify-center w-full">
-                        <img 
+                    <div class="flex items-center justify-center w-full py-10">
+                        <img
                             src="{{ asset('images/logo_IF.png') }}" 
                             alt="Logo" 
-                            class="w-16 h-16 me-5"
+                            class="w-10 h-16 me-5"
                         >
                         <h1 class="pl-4 text-2xl font-bold text-gray-800 dark:text-white whitespace-nowrap">
                             {{ config('app.name') }}
