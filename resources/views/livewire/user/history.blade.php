@@ -41,7 +41,7 @@
 
         <div class="bg-white dark:bg-gray-800 rounded shadow overflow-auto">
             <table class="min-w-full text-left text-sm">
-                <thead class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                <thead class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-center">
                     <tr>
                         <th class="px-4 py-2">Computador</th>
                         <th class="px-4 py-2">Início</th>
@@ -49,7 +49,7 @@
                         <th class="px-4 py-2">Duração</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     @forelse($usages as $usage)
                     <tr class="border-t border-gray-300 dark:border-gray-600">
                         <td class="px-4 py-2 text-gray-800 dark:text-white">
