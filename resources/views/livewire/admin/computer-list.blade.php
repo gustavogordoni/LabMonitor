@@ -80,7 +80,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="3" class="px-4 py-4 text-center text-gray-500 dark:text-gray-400">
+                    <td colspan="4" class="px-4 py-4 text-center text-gray-500 dark:text-gray-400">
                         Nenhum computador encontrado.
                     </td>
                 </tr>
