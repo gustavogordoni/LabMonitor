@@ -1,5 +1,8 @@
 # LabMonitor: Sistema de Gerenciamento de Laboratório de Informática
 
+[![GitHub last commit](https://img.shields.io/github/last-commit/gustavogordoni/LabMonitor?color=purple)](https://github.com/gustavogordoni/LabMonitor/commits/)
+[![License](https://img.shields.io/github/license/gustavogordoni/LabMonitor)](https://github.com/gustavogordoni/LabMonitor/blob/main/LICENSE)
+
 O **LabMonitor** é um sistema web desenvolvido para gerenciar o uso de computadores em um laboratório de informática de forma eficiente e autônoma. Alunos podem registrar o uso de máquinas, enquanto administradores têm acesso a um painel completo de monitoramento e controle.
 
 ## Funcionalidades Principais
