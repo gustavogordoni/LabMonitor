@@ -22,7 +22,7 @@ O **LabMonitor** é um sistema web desenvolvido para gerenciar o uso de computad
 
 ### Tabelas principais
 
-<div align="center"><img src="public/images/labMonitorDER.png" /></div>
+<div align="center"><img src="public/images/labMonitorDER.png" width="75%" /></div>
 <!-- <div align="center"><img src="public/images/labMonitor.png" width="550" /></div> -->
 
 -   **Users**: informações dos usuários, autenticação, função (aluno/admin), autenticação em dois fatores, entre outros.
@@ -64,37 +64,37 @@ O **LabMonitor** é um sistema web desenvolvido para gerenciar o uso de computad
 ## Principais telas
 
 <h3 align="center">Administrador - Dashboard</h3>
-<div align="center"><img src="public/images/admin/admin.png" /></div>
+<div align="center"><img src="public/images/admin/admin.png" width="85%" /></div>
     
 
 <details>
 <summary>Screenshots</summary>
 <br />
     <h3 align="center">Dashboard</h3>
-    <div align="center"><img src="public/images/dashboard.png" /></div>    
+    <div align="center"><img src="public/images/dashboard.png" width="85%" /></div>    
     <hr>
     <h3 align="center">Aluno - Seleção de Computador</h3>
-    <div align="center"><img src="public/images/student/select-computer.png" /></div>
+    <div align="center"><img src="public/images/student/select-computer.png" width="85%" /></div>
     <br />
     <h3 align="center">Aluno - Histórico</h3>
-    <div align="center"><img src="public/images/student/history.png" /></div>    
+    <div align="center"><img src="public/images/student/history.png" width="85%" /></div>    
     <hr>
     <!--
     <h3 align="center">Administrador - Dashboard</h3>
-    <div align="center"><img src="public/images/admin/admin.png" /></div>
+    <div align="center"><img src="public/images/admin/admin.png" width="85%" /></div>
     <br />
     -->
     <h3 align="center">Administrador - Lista de Alunos</h3>
-    <div align="center"><img src="public/images/admin/students.png" /></div>
+    <div align="center"><img src="public/images/admin/students.png" width="85%" /></div>
     <br />
     <h3 align="center">Administrador - Detalhes do Aluno</h3>
-    <div align="center"><img src="public/images/admin/student-details.png" /></div>
+    <div align="center"><img src="public/images/admin/student-details.png" width="85%" /></div>
     <br />
     <h3 align="center">Administrador - Computadores</h3>
-    <div align="center"><img src="public/images/admin/computes.png" /></div>
+    <div align="center"><img src="public/images/admin/computes.png" width="85%" /></div>
     <br />
     <h3 align="center">Administrador - Detalhes do Computador</h3>
-    <div align="center"><img src="public/images/admin/computer-details.png" /></div>    
+    <div align="center"><img src="public/images/admin/computer-details.png" width="85%" /></div>    
 </details>
 
 ---
