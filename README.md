@@ -63,6 +63,10 @@ O **LabMonitor** é um sistema web desenvolvido para gerenciar o uso de computad
 
 ## Principais telas
 
+<h3 align="center">Administrador - Dashboard</h3>
+<div align="center"><img src="public/images/admin/admin.png" /></div>
+    
+
 <details>
 <summary>Screenshots</summary>
 <br />
@@ -75,9 +79,11 @@ O **LabMonitor** é um sistema web desenvolvido para gerenciar o uso de computad
     <h3 align="center">Aluno - Histórico</h3>
     <div align="center"><img src="public/images/student/history.png" /></div>    
     <hr>
+    <!--
     <h3 align="center">Administrador - Dashboard</h3>
     <div align="center"><img src="public/images/admin/admin.png" /></div>
     <br />
+    -->
     <h3 align="center">Administrador - Lista de Alunos</h3>
     <div align="center"><img src="public/images/admin/students.png" /></div>
     <br />
